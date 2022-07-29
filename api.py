@@ -79,16 +79,3 @@ class API:
 
     def add_exception_handler(self, exception_handler):
         self.exception_handler = exception_handler
-
-    def get_data_from_form(self, request):
-        lst_input_data = []
-        dic_data = {}
-        body_form = request.body_file
-        data = list(body_form)[0]
-        str_data = data.decode('UTF-8')
-        data = str_data.split('&')
-        for el in data:
-            idx = el.find('=')
-            dic_data[el[:idx]] = el[idx+1:]
-            lst_input_data.append(el[idx+1:])
-        return {'dict': dic_data, 'list': lst_input_data}
